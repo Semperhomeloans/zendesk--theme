@@ -1,0 +1,27 @@
+<div style="margin:0 0 0 2em;">
+<nav class="sub-nav clearfix category-breadcrumbs">
+  {{breadcrumbs}}
+</nav>
+ <section class="clearfix section-area">
+
+  <p class="section-description">{{section.description}}</p>
+  <div class="section-tree">{{#if section.articles}}
+    <ul class="article-list">
+      {{#each section.articles}}
+        <li {{#if promoted}} class="article-promoted" {{/if}}>
+          {{#if promoted}}
+            <span data-title="{{t 'promoted'}}">★</span>
+          {{/if}}
+          <a href="{{url}}">{{title}}</a>
+        </li>
+      {{/each}}
+    </ul>
+  {{else}}
+    <i class="section-empty">
+      <a href="{{section.url}}">{{t 'empty'}}</a>
+    </i>
+  {{/if}}
+
+  {{pagination}}</div>
+</section>
+</div>

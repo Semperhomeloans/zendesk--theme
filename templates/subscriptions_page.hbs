@@ -1,0 +1,88 @@
+<div class="container">
+	{{breadcrumbs}}
+</div>
+<div class="container">
+  <div class="row">
+		<div class="col-lg-3 col-md-12 mb-lg-0 mb-sm-5 mb-5">
+			<div class="list-group list-group-flush list-group--basic h4">
+        <h3>Options</h3>
+				<li class="list-group-item sub">{{t 'requests'}}</li>
+		    <li class="list-group-item sub">{{link 'contributions'}}</li>
+		    <li class="list-group-item sub">{{link 'subscriptions'}}</li>
+			</div>
+		</div>
+
+
+		<div class="col-lg-6 mb-lg-0 mb-sm-5 mb-5">
+			<h1>{{t 'following'}}</h1>
+      <span class="dropdown filter">
+        <span class="dropdown-toggle">
+          {{current_filter.label}}
+        </span>
+        <span class="dropdown-menu" role="menu">
+          {{#each filters}}
+            <a href="{{url}}" aria-selected="{{selected}}" role="menuitem">
+              {{name}}
+            </a>
+          {{/each}}
+        </span>
+      </span>
+      {{#if subscriptions}}
+        <table class="table my-activities-table subscriptions-table h4">
+          <thead class="thead-dark">
+            <tr>
+              <th>{{t 'title'}}</th>
+              <th>{{t 'type'}}</th>
+              <th>{{t 'subscription'}}</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each subscriptions}}
+              <tr>
+                <td>
+                  {{#is type 'user'}}
+                    <img class="user-avatar" src="{{avatar_url}}" alt="">
+                  {{/is}}
+                  <a href="{{url}}" title="{{title}}" class="striped-list-title">
+                    {{excerpt title characters=60}}
+                  </a>
+                </td>
+                <td>{{name}}</td>
+                <td>{{subscribe}}</td>
+                <td class="subscriptions-unsubscribe">{{unsubscribe}}</td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+
+      {{pagination}}
+      {{else}}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>{{t 'not_following'}}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {{/if}}
+
+		</div>
+
+		<div class="col-lg-3 mb-lg-0 mb-sm-5 mb-5">
+			<div class="list-group list-group-flush list-group--basic h4">
+        <h3>Types</h3>
+			    {{#each filters}}
+			      <li class="list-group-item sub">
+			        {{#if selected}}
+			          {{name}}
+			        {{else}}
+			          <a href="{{url}}">{{name}}</a>
+			        {{/if}}
+			      </li>
+			    {{/each}}
+			</div>
+		</div>
+
+	
+  </div>
+</div>

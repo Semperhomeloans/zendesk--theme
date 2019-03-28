@@ -1,0 +1,74 @@
+<div class="container">
+	{{breadcrumbs}}
+</div>
+<div class="container">
+  <div class="row">
+		<div class="col-lg-3 col-md-12 mb-lg-0 mb-sm-5 mb-5">
+			<div class="list-group list-group-flush list-group--basic h4">
+        <h3>Options</h3>
+				<li class="list-group-item sub">{{t 'requests'}}</li>
+		    <li class="list-group-item sub">{{link 'contributions'}}</li>
+		    <li class="list-group-item sub">{{link 'subscriptions'}}</li>
+			</div>
+		</div>
+
+
+		<div class="col-lg-6 mb-lg-0 mb-sm-5 mb-5">
+			
+      {{#if contributions}}
+        <table class="table h4">
+          <thead>
+            <tr>
+              <th>{{t 'title'}}</th>
+              <th>{{t 'type'}}</th>
+              <th>{{t 'vote_sum'}}</th>
+              <th>{{t 'last_activity'}}</th>
+              <th>{{t 'created'}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each contributions}}
+              <tr>
+                <td>
+                  <a href="{{url}}">
+                    {{excerpt title characters=60}}
+                  </a>
+                </td>
+                <td>{{type}}</td>
+                <td>{{vote_sum}}</td>
+                <td>{{date last_activity_at}}</td>
+                <td>{{date created_at}}</td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      {{else}}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>{{t 'no_contributions'}}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {{/if}}
+
+      {{pagination}}
+		</div>
+
+		<div class="col-lg-3 mb-lg-0 mb-sm-5 mb-5">
+			<div class="list-group list-group-flush list-group--basic h4">
+        <h3>Requests</h3>
+			    {{#each filters}}
+			      <li class="list-group-item sub">
+			        {{#if selected}}
+			          {{name}}
+			        {{else}}
+			          <a href="{{url}}">{{name}}</a>
+			        {{/if}}
+			      </li>
+			    {{/each}}
+			</div>
+		</div>
+
+	
+  </div>
+</div>

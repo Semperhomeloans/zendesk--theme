@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div class="mt-5 mx-auto col-md-6 error text-center">
+      <h2>{{t 'oops'}}!</h2>
+      <img src="{{asset '404-error.png'}}" class="mb-4" />
+      {{#is error 'unauthorized'}}
+        <h1>{{link 'sign_in'}}</h1>
+      {{/is}}
+
+      {{#is error 'forbidden'}}
+        <h1>{{t 'not_authorized'}}</h1>
+      {{/is}}
+
+      {{#is error 'not_found'}}
+        <h1>{{t 'nonexistent_page'}}</h1>
+        <p class="h5">{{t 'mistyped_address_or_moved_page'}}</p>
+      {{/is}}
+      {{#link 'help_center'}}
+        <div class="mt-4">{{t 'back_to_homepage'}}</div>
+      {{/link}}
+    </div>
+  </div>
+
+</div>

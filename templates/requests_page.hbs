@@ -1,0 +1,117 @@
+<div class="container">
+	{{breadcrumbs}}
+</div>
+<div class="container">
+  <div class="row">
+		<div class="col-lg-3 col-md-12 mb-lg-0 mb-sm-5 mb-5">
+			<div class="list-group list-group-flush list-group--basic h4">
+        <h3>Options</h3>
+				<li class="list-group-item sub">{{t 'requests'}}</li>
+		    <li class="list-group-item sub">{{link 'contributions'}}</li>
+		    <li class="list-group-item sub">{{link 'subscriptions'}}</li>
+			</div>
+		</div>
+
+
+		<div class="col-lg-6 mb-lg-0 mb-sm-5 mb-5">
+			
+			{{#if requests}}
+		    <table id="request-table" class="request-table {{current_filter.identifier}}-requests">
+		      <thead>
+		        <tr>
+		          <th>{{t 'id'}}</th>
+		          <th>{{t 'subject'}}</th>
+		          <th>
+		            {{#is current_filter.identifier 'my'}}
+		              {{t 'created'}}
+		            {{else}}
+		              {{t 'requester'}}
+		            {{/is}}
+		          </th>
+		          <th>{{t 'last_activity'}}</th>
+		          <th>{{t 'status'}}</th>
+		        </tr>
+		      </thead>
+		      <tbody>
+		        {{#each requests}}
+		          <tr>
+		            <td>{{id}}</td>
+		            <td>
+		              <a href="{{url}}">
+		                {{#if subject}}
+		                  {{subject}}
+		                {{else}}
+		                  {{excerpt description characters=50}}
+		                {{/if}}
+		              </a>
+		            </td>
+		            <td>
+		              {{#is ../current_filter.identifier 'my'}}
+		                {{date created_at timeago=true}}
+		              {{else}}
+		                {{requester.name}}
+		              {{/is}}
+		            </td>
+		            <td>{{date updated_at timeago=true}}</td>
+		            <td>
+		              <span class="request-status request-{{status}}" title="{{status_description}}">
+		                {{status_name}}
+		              </span>
+		            </td>
+		          </tr>
+		        {{/each}}
+		      </tbody>
+		    </table>
+		  {{else}}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <strong>{{t 'no_requests'}}</strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+		  {{/if}}
+		</div>
+
+		<div class="col-lg-3 mb-lg-0 mb-sm-5 mb-5">
+			<div class="list-group list-group-flush list-group--basic h4">
+        <h3>Requests</h3>
+			    {{#each filters}}
+			      <li class="list-group-item sub">
+			        {{#if selected}}
+			          {{name}}
+			        {{else}}
+			          <a href="{{url}}">{{name}}</a>
+			        {{/if}}
+			      </li>
+			    {{/each}}
+			</div>
+		</div>
+
+		<script>
+		$(document).ready(function() {
+
+			// Submit search on select change
+			$("#request-status-select, #request-organization-select")
+				.on("change", function() {
+					search();
+				});
+
+			// Submit search on input enter
+			$("#quick-search").on("keypress", function(e) {
+				if (e.which === 13) {
+					search();
+				}
+			});
+
+			function search() {
+				window.location.search = $.param({
+					query: $("#quick-search").val(),
+					status: $("#request-status-select").val(),
+					organization_id: $("#request-organization-select").val()
+				});
+			}
+
+		});
+		</script>
+  </div>
+</div>

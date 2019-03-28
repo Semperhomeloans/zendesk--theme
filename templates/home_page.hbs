@@ -1,0 +1,111 @@
+<div class="jumbotron jumbotron-fluid d-flex align-items-center" style="background-image: url('{{asset 'jumbotron--shapes.png'}}'); background-size: cover;">
+  <div class="container text-center text-white">
+    <p class="h2 font-weight-bold mb-0">Need</p>
+    <p class="h1 font-weight-bolder text-uppercase mt-n2">Answers?</p>
+    <p class="h5 font-weight-lighter font-italic">Type a word or phrase below to search our topics</p>
+    <form class="input-group w-50 mx-auto mt-4" action="/hc/en-us/search">
+      <input class="form-control py-4 border-right-0 border" type="search" id="zd-search-input" style="border-top-left-radius: 25px; border-bottom-left-radius: 25px" name="query">
+      <span class="input-group-append">
+         <div class="input-group-text bg-white" style="border-top-right-radius: 25px; border-bottom-right-radius: 25px"><i class="fa fa-search text-black-50"></i></div>
+      </span>
+    </form>
+    <p class="h6 font-weight-lighter font-italic mt-4 mb-3">Common Topics</p>
+    <div class="d-md-inline-flex justify-content-center align-items-center w-50 mx-auto">
+      <a href="/hc/en-us/articles/360000867283-HALO-Rates" class="btn btn-outline-light btn-lg font-weight-lighter font-italic mx-2">HALO Rates</a>
+      <a href="/hc/en-us/articles/360000186846-My-Settings-Page" class="btn btn-outline-light btn-lg font-weight-lighter font-italic mx-2">Passwords & Logins</a>
+      <a href="/hc/en-us/requests/new?ticket_form_id=360000026243" class="btn btn-outline-light btn-lg font-weight-lighter font-italic mx-2">Scenarios</a>
+    </div>
+  </div>
+</div>
+
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-md-12 mb-lg-0 mb-sm-5 mb-5">
+          <div class="list-group list-group-flush list-group--tabs">
+            {{#if categories}}
+              {{#each categories}}
+                {{#if ../has_multiple_categories}}
+                <button type="button" class="list-group-item list-group-item-action cat-button" id="cat--{{id}}">{{name}}</button>
+                {{/if}}
+              {{/each}} {{pagination}}
+            {{/if}}
+          </div>
+        </div>
+        <div class="col-lg-6 mb-lg-0 mb-sm-5 mb-5">
+          <div class="content">  
+            {{#if categories}}
+              {{#each categories}}
+            		<div id="cat-sect--{{id}}" class="cat-sect">
+                <h1>{{name}}</h1>
+                {{#each sections}}
+                  <h2>{{name}}</h2>
+                  {{#if articles}}
+                    <div class="article-list">
+                      {{#each articles}}
+                        <div class="article-list-item mb-4">
+                          {{#if promoted}}
+                            <div class="article-list-item-featured featured"></div>
+                          {{/if}}
+                          <div class="article-list-item-data">
+                            <h3 class="article-list-item-title"><a href="{{url}}">{{title}}</a></h3>
+                            <p class="article-list-item-excerpt">{{excerpt body characters=200}}</p>
+                            <div class="d-flex justify-content-start">
+                              <div class="article-list-item-author mr-5">{{author.name}}</div>
+                              <div class="article-list-item-date">{{date edited_at timeago=true}}</div>
+                            </div>
+                          </div>
+                        </div>
+                      {{/each}}
+                    </div>
+                  {{/if}}
+                {{/each}}
+                </div>
+              {{/each}}
+            {{/if}}
+          </div>
+        </div>
+        <div class="col-lg-3 mb-lg-0 mb-sm-5 mb-5">
+          <div class="list-group list-group-flush list-group--basic">
+            <a href="/hc/en-us/sections/360000033526-Program-Guidelines" class="list-group-item list-group-item-action active">
+              Program Guidelines
+            </a>
+            <a href="http://status.semperhomeloans.com/" target="_blank" class="list-group-item list-group-item-action subheader">System Alerts</a>
+            <a href="http://status.semperhomeloans.com/" class="list-group-item list-group-item-action sub">Encompass </a>
+            <a href="http://status.semperhomeloans.com/" class="list-group-item list-group-item-action sub">Main Website</a>
+            <a href="http://status.semperhomeloans.com/" class="list-group-item list-group-item-action sub">Mortech Pricing</a>
+            <a href="http://status.semperhomeloans.com/" class="list-group-item list-group-item-action sub">Exchange Server (email)</a>
+            <a href="http://status.semperhomeloans.com/" class="list-group-item list-group-item-action sub">Velocify</a>
+            
+            <a href="http://sempfi.com/lawyers" class="mt-4 list-group-item list-group-item-action">Attorney Approval</a>
+
+            <div class="card text-center mx-auto p-4">
+              <div class="card-body">
+                <h5 class="card-title">Can't find what you're looking for?</h5>
+                <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
+                <a href="/hc/en-us/requests/new?ticket_form_id=general" class="shadow btn btn-primary px-4 py-3 font-italic" id="submit-a-ticket-button">Submit a Ticket</a>
+              </div>
+            </div>
+            <div class="ltable mx-auto p-4">
+              <h6 class="ltable-title font-weight-light">Current Ticket Turn Times:</h6>
+              <div class="ltable-row d-flex justify-content-between">
+                <div class="ltable-item">
+                  asdf
+                </div>
+                <div class="ltable-item">
+                  asdf
+                </div>
+              </div>
+              <div class="ltable-row d-flex justify-content-between">
+                <div class="ltable-item">
+                  asdf
+                </div>
+                <div class="ltable-item">
+                  asdf
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

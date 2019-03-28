@@ -1,0 +1,39 @@
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,700,900" rel="stylesheet">
+
+
+    <div class="top-bar__container">
+    <div class="container">
+      <div id="top-bar" class="d-flex justify-content-between py-4">
+        <div class="d-flex justify-content-between align-items-center">
+          <a href="/" class="border-right mr-3 pr-3">
+            <img src="{{asset 'semper-logo.png'}}" alt="" id="logo">
+          </a>
+          <h2 class="text-muted h4 font-weight-light mb-0 mt-0">Support Center</h2>
+        </div>
+        <div class="d-flex justify-content-between align-items-center">
+          <nav class="user-nav" style="float:right;">
+            {{user_info}}
+            <!--  {{link 'new_request' class='submit-a-request'}}
+            {{link 'my_activities' class='my-activities'}} -->
+
+            {{#if alternative_locales}}
+              <div class="dropdown language-selector" aria-haspopup="true">
+                <a class="dropdown-toggle">
+                  {{current_locale.name}}
+                </a>
+                <span class="dropdown-menu dropdown-menu-end" role="menu">
+                  {{#each alternative_locales}}
+                    <a href="{{url}}" dir="{{direction}}" rel="nofollow" role="menuitem">
+                      {{name}}
+                    </a>
+                  {{/each}}
+                </span>
+              </div>
+            {{/if}}
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
